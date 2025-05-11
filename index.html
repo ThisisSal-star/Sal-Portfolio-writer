@@ -4,118 +4,517 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Salome Njoroge | Writer Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    body {
-      font-family: Georgia, serif;
-      background: #f9f9f9;
+    :root {
+      --primary-color: #5d5c61;
+      --secondary-color: #938e94;
+      --accent-color: #b1a296;
+      --light-color: #f9f9f9;
+      --dark-color: #222;
+      --text-color: #333;
+      --text-light: #666;
+    }
+    
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      color: black;
     }
-    header {
-      background: burlywood;
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 2.5em;
-    }
-    header p {
-      font-size: 1.2em;
-      margin-top: 10px;
-    }
-    main {
-      max-width: 800px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    section {
-      margin-bottom: 60px;
-    }
-    h2 {
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 5px;
-    }
-    article {
-      margin-top: 20px;
-    }
-    article h3 {
-      margin-top: 0;
-      color: #444;
-    }
-    article p {
+    
+    body {
+      font-family: 'Merriweather', Georgia, serif;
+      background: var(--light-color);
+      color: var(--text-color);
       line-height: 1.6;
     }
+    
+    header {
+      background: linear-gradient(135deg, var(--dark-color), var(--primary-color));
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('https://images.unsplash.com/photo-1455390582262-044cdead277a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      opacity: 0.3;
+      z-index: 0;
+    }
+    
+    header .header-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    header h1 {
+      margin: 0;
+      font-size: 2.8em;
+      font-weight: 700;
+      letter-spacing: 1px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    
+    header p {
+      font-size: 1.3em;
+      margin-top: 15px;
+      opacity: 0.9;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+    
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(34, 34, 34, 0.9);
+      z-index: 1000;
+      padding: 15px 0;
+      transition: all 0.3s ease;
+    }
+    
+    nav.scrolled {
+      padding: 10px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .logo {
+      color: white;
+      font-size: 1.5em;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 30px;
+    }
+    
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+      transition: color 0.3s;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-color);
+    }
+    
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5em;
+    }
+    
+    main {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 30px;
+    }
+    
+    section {
+      margin-bottom: 80px;
+      animation: fadeInUp 1s ease-in-out;
+    }
+    
+    h2 {
+      font-size: 2.2em;
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--accent-color);
+      color: var(--primary-color);
+      position: relative;
+    }
+    
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+    
+    article {
+      margin-top: 40px;
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    article:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+    
+    article h3 {
+      font-size: 1.6em;
+      margin-bottom: 15px;
+      color: var(--primary-color);
+    }
+    
+    article p {
+      margin-bottom: 15px;
+      color: var(--text-light);
+    }
+    
+    .read-more {
+      display: inline-block;
+      margin-top: 15px;
+      color: var(--accent-color);
+      font-weight: bold;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .read-more:hover {
+      color: var(--primary-color);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      margin-top: 30px;
+    }
+    
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      background: var(--accent-color);
+      transform: translateY(-3px);
+    }
+    
     footer {
       text-align: center;
-      padding: 20px;
-      background: #eee;
-      font-size: 0.9em;
+      padding: 30px;
+      background: var(--dark-color);
+      color: white;
+    }
+    
+    .contact-btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 30px;
+      background: var(--accent-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .contact-btn:hover {
+      background: var(--primary-color);
+      transform: translateY(-3px);
+    }
+    
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2.2em;
+      }
+      
+      header p {
+        font-size: 1.1em;
+      }
+      
+      .nav-links {
+        position: fixed;
+        top: 70px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 70px);
+        background: rgba(34, 34, 34, 0.95);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: left 0.3s ease;
+      }
+      
+      .nav-links.active {
+        left: 0;
+      }
+      
+      .nav-links li {
+        margin: 15px 0;
+      }
+      
+      .hamburger {
+        display: block;
+      }
+      
+      main {
+        padding: 0 20px;
+      }
+      
+      article {
+        padding: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.8em;
+      }
+      
+      header p {
+        font-size: 1em;
+      }
+      
+      h2 {
+        font-size: 1.8em;
+      }
+      
+      article h3 {
+        font-size: 1.4em;
+      }
     }
   </style>
 </head>
 <body>
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">S.Njoroge</a>
+      <button class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </button>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#articles">Writing</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
 
   <header>
-    <h1>Salome Njoroge</h1>
-    <p>Writer & Storyteller</p>
+    <div class="header-content">
+      <h1>Salome Njoroge</h1>
+      <p>Writer & Storyteller</p>
+    </div>
   </header>
 
   <main>
     <section id="about">
       <h2>About Me</h2>
-      <p>I'm an aspiring writer with a passion for storytelling and self-expression. Though I'm just starting out, I’m committed to growing my voice and exploring different writing styles and topics. I believe that words have the power to connect, inspire, and heal—and I’m excited to be on this journey.</p>
+      <p>I'm an aspiring writer with a passion for storytelling and self-expression. Though I'm just starting out, I'm committed to growing my voice and exploring different writing styles and topics. I believe that words have the power to connect, inspire, and heal—and I'm excited to be on this journey.</p>
+      <p>My writing journey began as a personal exploration but has grown into a desire to share stories that resonate with others. I'm particularly drawn to narratives about personal growth, identity, and the human experience.</p>
     </section>
 
     <section id="articles">
-      <h2>My Writing</h2>
+      <h2>Featured Writings</h2>
 
       <article>
         <h3>How Writing Helps Me Express Myself</h3>
-        <p>There are moments when I’m overwhelmed with thoughts, emotions, and questions, yet I struggle to articulate them aloud. That’s when I lean on writing. It’s more than just a pastime—it’s my way of untangling the chaos in my mind and understanding what I feel.</p>
-        <p>Writing provides a safe, quiet space where I can be unapologetically real. On the page, there’s no expectation to be flawless or instantly understood. I can slow down, reflect on my feelings, and uncover thoughts I didn’t realize were there. It acts like a mirror, showing me who I truly am.</p>
-        <p>When I write, I feel acknowledged—even if no one else reads it. It allows me to be vulnerable, playful, inquisitive, or brave. I get to tell stories that matter to me, and in the process, I discover more about myself.</p>
-        <p>Above all, writing affirms that my voice matters. And that realization is incredibly empowering.</p>
+        <p>There are moments when I'm overwhelmed with thoughts, emotions, and questions, yet I struggle to articulate them aloud. That's when I lean on writing. It's more than just a pastime. it's my way of untangling the chaos in my mind and understanding what I feel.</p>
+        <p class="article-excerpt">Writing provides a safe, quiet space where I can be unapologetically real. On the page, there's no expectation to be flawless or instantly understood...</p>
+        <a href="#" class="read-more" data-content="full-content-1">Read More</a>
+        <div class="full-content" id="full-content-1" style="display: none;">
+          <p>I can slow down, reflect on my feelings, and uncover thoughts I didn't realize were there. It acts like a mirror, showing me who I truly am.</p>
+          <p>When I write, I feel acknowledged, even if no one else reads it. It allows me to be vulnerable, playful, inquisitive, or brave. I get to tell stories that matter to me, and in the process, I discover more about myself.</p>
+          <p>Above all, writing affirms that my voice matters. And that realization is incredibly empowering.</p>
+          <a href="#" class="read-more read-less" data-content="full-content-1">Read Less</a>
+        </div>
       </article>
 
       <article>
-        <h3>Why I Love To Writer</h3>
-        <p>Ever since I was young, stories have been my escape, my comfort, and my way of seeing the world through different eyes. I’ve always admired the way words could move people, make them feel seen, or transport them somewhere new. That power made me fall in love with writing.
-          I want to be a writer because I believe stories matter—especially the small, honest ones. Writing gives me the chance to share my voice, my imagination, and maybe even help someone else feel less alone in their own journey.
-          It’s not just about being published or getting recognition (though that would be nice one day). For me, it’s about the process—the quiet moments when ideas turn into sentences and something personal becomes something worth sharing.
-          I’m still learning. I’m still growing. But this is the path I want to walk, one word at a time.
-</p>
+        <h3>Why I Love To Write</h3>
+        <p>Ever since I was young, stories have been my escape, my comfort, and my way of seeing the world through different eyes. I've always admired the way words could move people, make them feel seen, or transport them somewhere new.</p>
+        <p class="article-excerpt">That power made me fall in love with writing. I want to be a writer because I believe stories matter, especially the small, honest ones...</p>
+        <a href="#" class="read-more" data-content="full-content-2">Read More</a>
+        <div class="full-content" id="full-content-2" style="display: none;">
+          <p>Writing gives me the chance to share my voice, my imagination, and maybe even help someone else feel less alone in their own journey.</p>
+          <p>It's not just about being published or getting recognition (though that would be nice one day). For me, it's about the process, the quiet moments when ideas turn into sentences and something personal becomes something worth sharing.</p>
+          <p>I'm still learning. I'm still growing. But this is the path I want to walk, one word at a time.</p>
+          <a href="#" class="read-more read-less" data-content="full-content-2">Read Less</a>
+        </div>
       </article>
 
       <article>
-        <h3>5 Things I’ve Learned Starting My Writing Journey</h3>
-        <p>Starting something new is never easy, and writing is no exception. As someone who’s just beginning to take writing seriously, I’ve already learned a lot—some lessons surprising, some challenging, and some truly inspiring. Here are five things I’ve learned so far:
-
-1. You don’t need to be perfect to start.
-For a long time, I held back because I thought I wasn’t “good enough.” But the truth is, no one starts perfect. The only way to grow is by doing the work, even if it’s messy at first.
-
-2. Writing is a habit, not just inspiration.
-Waiting for the “perfect idea” can become an excuse. I’ve learned that writing regularly—even when I don’t feel like it—helps me build discipline and creativity over time.
-
-3. Your voice matters.
-At first, I struggled with comparing myself to others. But now I’m learning that everyone’s perspective is unique. My voice may be different, but it has value.
-
-4. Feedback is a gift.
-It’s scary to share your writing with others, but getting feedback is one of the best ways to grow. It’s helped me see my blind spots and get better with each piece.
-
-5. Progress takes time—and that’s okay.
-Some days I write more, some days less. What matters is staying committed to the journey. Every word adds up.
-
-</p>
+        <h3>5 Things I've Learned Starting My Writing Journey</h3>
+        <p>Starting something new is never easy, and writing is no exception. As someone who's just beginning to take writing seriously, I've already learned a lot, some lessons surprising, some challenging, and some truly inspiring.</p>
+        <p class="article-excerpt">Here are five things I've learned so far: 1. You don't need to be perfect to start. For a long time, I held back because I thought I wasn't "good enough." But the truth is...</p>
+        <a href="#" class="read-more" data-content="full-content-3">Read More</a>
+        <div class="full-content" id="full-content-3" style="display: none;">
+          <ol>
+            <li><strong>You don't need to be perfect to start.</strong> For a long time, I held back because I thought I wasn't "good enough." But the truth is, no one starts perfect. The only way to grow is by doing the work, even if it's messy at first.</li>
+            <li><strong>Writing is a habit, not just inspiration.</strong> Waiting for the "perfect idea" can become an excuse. I've learned that writing regularly—even when I don't feel like it, helps me build discipline and creativity over time.</li>
+            <li><strong>Your voice matters.</strong> At first, I struggled with comparing myself to others. But now I'm learning that everyone's perspective is unique. My voice may be different, but it has value.</li>
+            <li><strong>Feedback is a gift.</strong> It's scary to share your writing with others, but getting feedback is one of the best ways to grow. It's helped me see my blind spots and get better with each piece.</li>
+            <li><strong>Progress takes time—and that's okay.</strong> Some days I write more, some days less. What matters is staying committed to the journey. Every word adds up.</li>
+          </ol>
+          <a href="#" class="read-more read-less" data-content="full-content-3">Read Less</a>
+        </div>
       </article>
+    </section>
+
+    <section id="contact">
+      <h2>Get In Touch</h2>
+      <p>I'd love to hear from you! Whether you have feedback on my writing, want to discuss a collaboration, or just want to say hello, feel free to reach out.</p>
+      <a href="mailto:salnjoroge@gmail.com" class="contact-btn">Email Me</a>
+      
+      <div class="social-links">
+        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Medium"><i class="fab fa-medium-m"></i></a>
+      </div>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Salome Njoroge | Contact: salnjoroge@gmail.com
+    <p>&copy; <span id="year"></span> Salome Njoroge  | Email. salnjoroge@gmail.com| All Rights Reserved</p>
   </footer>
 
+  <script>
+    // Current year for footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Mobile menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+      hamburger.innerHTML = navLinks.classList.contains('active') ? 
+        '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+    });
+    
+    // Close mobile menu when clicking a link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+        hamburger.innerHTML = '<i class="fas fa-bars"></i>';
+      });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        window.scrollTo({
+          top: targetElement.offsetTop - 70,
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // Read more/read less functionality
+    document.querySelectorAll('.read-more').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const contentId = this.getAttribute('data-content');
+        const content = document.getElementById(contentId);
+        const excerpt = this.parentElement.querySelector('.article-excerpt');
+        
+        if (content.style.display === 'none' || !content.style.display) {
+          content.style.display = 'block';
+          if (excerpt) excerpt.style.display = 'none';
+          this.style.display = 'none';
+        } else {
+          content.style.display = 'none';
+          if (excerpt) excerpt.style.display = 'block';
+          this.style.display = 'inline-block';
+        }
+      });
+    });
+    
+    // Animation on scroll
+    const animateOnScroll = () => {
+      const elements = document.querySelectorAll('section, article');
+      
+      elements.forEach(element => {
+        const elementPosition = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight / 1.2;
+        
+        if (elementPosition < screenPosition) {
+          element.style.opacity = '1';
+          element.style.transform = 'translateY(0)';
+        }
+      });
+    };
+    
+    // Set initial state for animations
+    document.querySelectorAll('section, article').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    });
+    
+    window.addEventListener('scroll', animateOnScroll);
+    window.addEventListener('load', animateOnScroll);
+  </script>
 </body>
 </html>
